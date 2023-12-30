@@ -13,7 +13,7 @@ contract CinemaNFT is ERC721URIStorage {
 
     constructor(
         address _marketplaceContract
-    ) ERC721("Bored Pets Yacht Club", "BPYC") {
+    ) ERC721("Cinema NFT Collection", "CNC") {
         marketplaceContract = _marketplaceContract;
     }
 
