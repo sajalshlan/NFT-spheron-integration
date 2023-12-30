@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("@reef-defi/hardhat-reef");
+require("@reef-chain/hardhat-reef");
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -9,12 +9,11 @@ require("@reef-defi/hardhat-reef");
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.13",
   defaultNetwork: "reef_testnet",
   networks: {
     reef: {
-      url: "ws://substrate-node:9944",
-      scanUrl: "http://api:8000",
+      url: "ws://127.0.0.1:9944",
     },
     reef_testnet: {
       url: "wss://rpc-testnet.reefscan.com/ws",

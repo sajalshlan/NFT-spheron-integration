@@ -2,26 +2,28 @@ const hre = require("hardhat");
 
 async function main() {
   // define your testnet_account in hardhat.config.js
-  const testnetAccount = await hre.reef.getSignerByName("tests");
-
+  const testnetAccount = await hre.reef.getSignerByName("testnet_account");
+  console.log("here");
+  await testnetAccount.claimDefaultAccount();
   const NFTMarket = await hre.reef.getContractFactory(
-    "NFTMarketPlace",
+    "Marketplace",
     testnetAccount
   );
   const nftMarketPlace = await NFTMarket.deploy();
+  const marketPlaceAddress = nftMarketPlace.address;
+  console.log("Marketplace deployed");
 
-  const NFTToken = await hre.reef.getContractFactory(
+  const NFTContract = await hre.reef.getContractFactory(
     "CinemaNFT",
     testnetAccount
   );
-  const nftContract = await NFTToken.deploy();
+  const nftContract = await NFTContract.deploy(marketPlaceAddress);
+  const contractAddress = nftContract.address;
+  console.log("NFT Contract deployed");
 
-  console.log("Deploy done");
   console.log({
-    token: nft.address,
-  });
-  console.log({
-    name: await nft.name(),
+    nftMarketPlace: marketPlaceAddress,
+    nftContract: contractAddress,
   });
 }
 
